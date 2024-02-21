@@ -37,16 +37,17 @@ Book.prototype.info = function() {
 }
 
 
-const buttonAdd = document.getElementById('add-card');
+let buttonAdd = document.getElementById('add-card');
 
 //
 var modal = document.getElementById("myModal");
 
 var span = document.getElementsByClassName("close")[0];
 
-buttonAdd.onclick = function() {
+buttonAdd.addEventListener("click", function(event) {
+    event.preventDefault();
     modal.style.display = "block";
-}
+})
 
 span.onclick = function() {
     modal.style.display = "none";
@@ -57,7 +58,8 @@ window.onclick = function(event) {
     }
 }
 
-document.getElementById("addBookButton").addEventListener("click", function() {
+document.getElementById("bookForm").addEventListener("submit", function(event) {
+    event.preventDefault();
     var title = document.getElementById("titleInput").value;
     var author = document.getElementById("authorInput").value;
     var pages = document.getElementById("pagesInput").value;
@@ -73,7 +75,6 @@ document.getElementById("addBookButton").addEventListener("click", function() {
 
 function addBookToPage(book) {
     const mainElement = document.querySelector('.main');
-    event.preventDefault();
     var newBook = document.createElement('div');
     newBook.classList.add('cards');
     var titleElement = document.createElement('h2');
