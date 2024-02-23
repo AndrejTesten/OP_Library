@@ -63,8 +63,9 @@ document.getElementById("bookForm").addEventListener("submit", function(event) {
     var title = document.getElementById("titleInput").value;
     var author = document.getElementById("authorInput").value;
     var pages = document.getElementById("pagesInput").value;
-
-    var book = new Book(title,author,pages, false);
+    var readInput = document.getElementById("readInput");
+    var read = readInput.checked;
+    var book = new Book(title,author,pages, read);
     myLibrary.push(book);
 
     addBookToPage(book);
@@ -78,14 +79,28 @@ function addBookToPage(book) {
     var newBook = document.createElement('div');
     newBook.classList.add('cards');
     var titleElement = document.createElement('h2');
+    titleElement.id='title';
     titleElement.textContent = `Title: ${book.title}`;
     var authorElement = document.createElement('h2');
+    authorElement.id='author'
     authorElement.textContent = `Author: ${book.author}`;
     var pagesElement = document.createElement('h2');
     pagesElement.textContent = `Pages: ${book.pages}`;
+    pagesElement.id='pages';
+    var readElement = document.createElement('h2');
+    readElement.textContent = `Read: ${book.read ? 'Yes' : 'No'}`;
+    var deleteButton = document.createElement('div');
+    deleteButton.id = 'delete';
+    deleteButton.innerHTML = '<i class="bx bxs-message-square-x"></i>';
+    deleteButton.addEventListener('click', function() {
+        mainElement.removeChild(newBook);
+    });
 
     newBook.appendChild(titleElement);
     newBook.appendChild(authorElement);
     newBook.appendChild(pagesElement);
+    newBook.appendChild(readElement);
+    newBook.appendChild(deleteButton);
+  
     mainElement.insertBefore(newBook,buttonAdd);
 }
