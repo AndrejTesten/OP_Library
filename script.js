@@ -63,18 +63,18 @@ document.getElementById("bookForm").addEventListener("submit", function(event) {
     var title = document.getElementById("titleInput").value;
     var author = document.getElementById("authorInput").value;
     var pages = document.getElementById("pagesInput").value;
-    var readInput = document.getElementById("readInput");
+    var readInput = document.querySelector("#myModal .switch input[type='checkbox']");
     var read = readInput.checked;
     var book = new Book(title,author,pages, read);
     myLibrary.push(book);
 
-    addBookToPage(book);
+    addBookToPage(book, myLibrary.length - 1);
 
     modal.style.display="none";
 
 });
 
-function addBookToPage(book) {
+function addBookToPage(book, index) {
     const mainElement = document.querySelector('.main');
     var newBook = document.createElement('div');
     newBook.classList.add('cards');
@@ -93,6 +93,8 @@ function addBookToPage(book) {
     deleteButton.id = 'delete';
     deleteButton.innerHTML = '<i class="bx bxs-message-square-x"></i>';
     deleteButton.addEventListener('click', function() {
+        var index = parseInt(newBook.getAttribute('data-index'));
+        myLibrary.splice(index, 1);
         mainElement.removeChild(newBook);
     });
 
@@ -101,6 +103,24 @@ function addBookToPage(book) {
     newBook.appendChild(pagesElement);
     newBook.appendChild(readElement);
     newBook.appendChild(deleteButton);
-  
     mainElement.insertBefore(newBook,buttonAdd);
+    newBook.setAttribute('data-index', index);
 }
+
+let unreadBttn = document.getElementById('unread');
+unreadBttn.addEventListener('click', filterRead);
+function filterRead() {
+    event.preventDefault();
+    const mainElement = document.querySelector('.main');
+ for (let i = 0; i < myLibrary.length; i++) {
+    const book = myLibrary[i];
+    const bookElement = mainElement.children[i];
+    if (!book.read) {
+        bookElement.style.display = 'block';
+        modal.style.display = 'none';
+    } else {
+        bookElement.style.display = 'none';
+    }
+ }
+}
+
