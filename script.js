@@ -176,3 +176,18 @@ window.onclick = function(event) {
       addBookToPage(book, index);
     });
   });
+
+  document.getElementById('allBooks').addEventListener("click", function(event) {
+    event.preventDefault();
+    displayAllBooks();
+  });
+  
+  // Function to display all books
+  function displayAllBooks() {
+    const mainElement = document.querySelector('.main');
+    mainElement.innerHTML = ''; // Clear existing books
+  
+    myLibrary.forEach(function(book, index) {
+      addBookToPage(book, index);
+    });
+  }  

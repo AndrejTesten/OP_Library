@@ -108,7 +108,7 @@ color: white;
 }
 /* Modal */ 
 
-.modal {
+.modal, .modalSearch {
   display: none; 
   position: fixed; 
   z-index: 1; 
@@ -126,7 +126,12 @@ color: white;
   font-size: 2em;
   font-weight: bolder;
 }
-.modal-content {
+#questionSearch {
+  color: #3d2f07;
+  font-size: 17px;
+  font-weight: bolder;
+}
+.modal-content, .modalSearch-content {
   background-color: #d9b650;
   margin: 15% auto; 
   padding: 20px;
@@ -144,15 +149,17 @@ color: white;
   margin: 0 auto;
 }
 /* The Close Button */
-.close {
+.close, .closeSearch {
   color: #3d2f07;
   float: right;
   font-size: 28px;
   font-weight: bold;
 }
-
+.closeSearch {
+  line-height:0%; 
+}
 .close:hover,
-.close:focus {
+.close:focus, .closeSearch:hover, .closeSearch:focus {
   color: black;
   text-decoration: none;
   cursor: pointer;
@@ -170,7 +177,7 @@ input[type=text], input[type=number] {
   color:#3d2f07;
   font-size: 1.5em;
 }
-#addBookButton {
+#addBookButton, #searchButton {
   width:100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -246,40 +253,5 @@ input:checked + .slider:before {
   -ms-transform: translateX(26px);
   transform: translateX(26px);
 }
-/* The Modal (background) */
-.modalSearch {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
 
-/* Modal Content/Box */
-.modalSearch-content {
-  background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
-}
 
-/* The Close Button */
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
