@@ -148,7 +148,7 @@ color: white;
   height: 100%;
   margin: 0 auto;
 }
-/* The Close Button */
+/* Close Button for modals */
 .close, .closeSearch {
   color: #3d2f07;
   float: right;
@@ -210,7 +210,7 @@ color: #3d2f07;
   height: 34px;
 }
 
-/* Hide default HTML checkbox */
+/* Hide defaults checkbox */
 .switch input {
   opacity: 0;
   width: 0;
