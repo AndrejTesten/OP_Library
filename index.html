@@ -26,7 +26,7 @@
               <input type="number" id="pagesInput" placeholder="Pages" />
               <p id="question">Have you read the book?</p>
               <label class="switch">
-                <input type="checkbox">
+                <input id="readCheckbox" type="checkbox">
                 <span class="slider"></span>
               </label>
               <button type="submit" id="addBookButton">Add Book</button>
@@ -42,16 +42,27 @@
       <aside class="sidebar">
         <ul>
           <li>
-            <a href=""><i class="bx bxs-book-open"></i>Read</a>
+            <a id="readBooks" href=""><i class="bx bxs-book-open"></i>Read</a>
           </li>
           <li>
-            <a id="unread" href=""><i class="bx bxs-book-alt"></i>Unread</a>
+            <a id="unreadBooks" href=""><i class="bx bxs-book-alt"></i>Unread</a>
           </li>
           <li>
             <a href=""><i class="bx bx-book-reader"></i>To read</a>
           </li>
           <li>
-            <a href=""><i class="bx bxs-search-alt-2"></i>Search</a>
+            <a id="myBtnSearch" class="searchButton" href=""><i class="bx bxs-search-alt-2"></i>Search</a>
+            <div id="myModalSearch" class="modalSearch">
+
+              <!-- Modal content -->
+              <div class="modalSearch-content">
+                <span class="closeSearch">&times;</span>
+                <p>Search for book (type name, author, or pages)</p>
+                <input type="text" id="searchInput" placeholder="Search" />
+                <button id="searchButton">Search</button>
+              </div>
+            
+            </div>
           </li>
         </ul>
       </aside>

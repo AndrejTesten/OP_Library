@@ -103,24 +103,76 @@ function addBookToPage(book, index) {
     newBook.appendChild(pagesElement);
     newBook.appendChild(readElement);
     newBook.appendChild(deleteButton);
-    mainElement.insertBefore(newBook,buttonAdd);
     newBook.setAttribute('data-index', index);
+    mainElement.appendChild(newBook); // Use appendChild to add the new book to the end of mainElement
 }
 
-let unreadBttn = document.getElementById('unread');
-unreadBttn.addEventListener('click', filterRead);
-function filterRead() {
+// Event listener for the Read button
+document.getElementById("readBooks").addEventListener("click", function(event) {
     event.preventDefault();
+    filterBooks(true); // Pass true to filter read books
+  });
+  
+  // Event listener for the Unread button
+  document.getElementById("unreadBooks").addEventListener("click", function(event) {
+    event.preventDefault();
+    filterBooks(false); // Pass false to filter unread books
+  });
+  
+  // Function to filter books based on read status
+  function filterBooks(isRead) {
     const mainElement = document.querySelector('.main');
- for (let i = 0; i < myLibrary.length; i++) {
-    const book = myLibrary[i];
-    const bookElement = mainElement.children[i];
-    if (!book.read) {
-        bookElement.style.display = 'block';
-        modal.style.display = 'none';
-    } else {
-        bookElement.style.display = 'none';
-    }
- }
+    mainElement.innerHTML = ''; // Clear existing books
+  
+    myLibrary.forEach(function(book, index) {
+      if (book.read === isRead) {
+        addBookToPage(book, index);
+      }
+    });
+  }
+
+    // Get the modal
+var modalSearch = document.getElementById("myModalSearch");
+
+// Get the button that opens the modal
+var btnSearch = document.getElementById("myBtnSearch");
+
+// Get the <span> element that closes the modal
+var spanSearch = document.getElementsByClassName("closeSearch")[0];
+
+// When the user clicks on the button, open the modal
+btnSearch.onclick = function() {
+    event.preventDefault();
+  modalSearch.style.display = "block";
+  
 }
 
+// When the user clicks on <span> (x), close the modal
+spanSearch.onclick = function() {
+  modalSearch.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modalSearch) {
+    modalSearch.style.display = "none";
+  }
+}
+  document.getElementById("searchButton").addEventListener("click", function(event) {
+    event.preventDefault();
+    const searchTerm = document.getElementById("searchInput").value.toLowerCase();
+    const filteredBooks = myLibrary.filter(function(book) {
+      return (
+        book.title.toLowerCase().includes(searchTerm) ||
+        book.author.toLowerCase().includes(searchTerm) ||
+        book.pages.toString().includes(searchTerm)
+      );
+    });
+  
+    const mainElement = document.querySelector('.main');
+    mainElement.innerHTML = ''; // Clear existing books
+  
+    filteredBooks.forEach(function(book, index) {
+      addBookToPage(book, index);
+    });
+  });
