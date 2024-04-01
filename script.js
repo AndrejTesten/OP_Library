@@ -137,7 +137,7 @@ function filterBooks(isRead) {
     const index = parseInt(card.getAttribute("data-index"));
     const book = myLibrary[index];
     if (book.read === isRead) {
-      card.style.display = "block"; /
+      card.style.display = "block"; 
     } else {
       card.style.display = "none"; 
     }
